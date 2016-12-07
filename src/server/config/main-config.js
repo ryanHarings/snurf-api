@@ -21,6 +21,21 @@
 
   appConfig.init = function(app, express) {
 
+    var allowCrossDomain = function(req, res, next) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+      // intercept OPTIONS method
+      if ('OPTIONS' === req.method) {
+        res.send(200);
+      }
+      else {
+        next();
+      }
+    };
+    app.use(allowCrossDomain);
+
     // *** view engine *** //
     nunjucks.configure(viewFolders, {
       express: app,
@@ -36,11 +51,11 @@
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     // // uncomment if using express-session
-    // app.use(session({
-    //   secret: process.env.SECRET_KEY,
-    //   resave: false,
-    //   saveUninitialized: true
-    // }));
+    app.use(session({
+      secret: process.env.SECRET_KEY,
+      resave: false,
+      saveUninitialized: true
+    }));
     app.use(flash());
     app.use(express.static(path.join(__dirname, '..', '..', 'client')));
 
