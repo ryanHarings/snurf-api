@@ -15,7 +15,8 @@ exports.seed = function(knex, Promise) {
           name: 'Sam Jeffers',
           email: 'sam@email.com',
           password: '$2a$10$FAUzH4FoZTlW.hQVPA87NOAgB3NjDGGRf.rRaSlkyVJrCA9WCG4JG',
-          active: true
+          active: true,
+          profilePicUrl: 'https://ohsodapper.files.wordpress.com/2012/02/tumblr_lwmvmpddwi1r6a91io1_1280.jpg'
         })
       ]);
     });

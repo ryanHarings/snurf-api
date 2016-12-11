@@ -4,10 +4,6 @@ const knex = require('../db/connection');
 
 // ********** dev only **********
 
-router.get('/', function (req, res, next) {
-
-});
-
 router.get('/allContent', function (req, res, next) {
   knex('content')
   .select('*')

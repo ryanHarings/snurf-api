@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     t.string('email').notNullable();
     t.string('password').notNullable();
     t.boolean('active').notNullable();
+    t.string('profilePicUrl');
   });
 };
 

@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     t.string('data').notNullable();
     t.string('title').notNullable();
     t.integer('user_id').notNullable();
+    t.boolean('private').notNullable();
   });
 };
 
