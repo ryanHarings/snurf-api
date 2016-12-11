@@ -61,8 +61,6 @@ router.post('/login', function (req, res, next) {
   const loginPassword = req.body.password;
 
   if (!loginEmail || !loginPassword) {
-    let result = {};
-    result.message = 'Nice try.';
     res.send('incomplete');
   } else {
     knex('accounts')
@@ -72,7 +70,7 @@ router.post('/login', function (req, res, next) {
         res.send('signup');
       } else {
         if (bcrypt.compareSync(loginPassword, user.password)) {
-          res.send('success');
+          res.send(user);
         } else {
           res.send('password');
         }
